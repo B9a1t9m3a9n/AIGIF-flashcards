@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="480" viewBox="0 0 640 480">
+    <defs>
+      <radialGradient id="bg" cx="0.5" cy="0.5" r="1">
+        <stop offset="0%" style="stop-color:#FFA500;stop-opacity:1">
+          <animate attributeName="stop-color" 
+                   values="#FFA500;#FF8C00;#FFD700;#FFA500" 
+                   dur="4s" repeatCount="indefinite" />
+        </stop>
+        <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1">
+          <animate attributeName="stop-color" 
+                   values="#FFD700;#FFA500;#FF8C00;#FFD700" 
+                   dur="4s" repeatCount="indefinite" />
+        </stop>
+      </radialGradient>
+      
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    
+    <rect width="100%" height="100%" fill="url(#bg)" />
+    <g transform="translate(320, 240)">
+        <ellipse cx="0" cy="20" rx="60" ry="40" fill="#FFA500" opacity="0.9">
+          <animate attributeName="ry" values="40;50;40" dur="2s" repeatCount="indefinite"/>
+        </ellipse>
+        <g>
+          <animateTransform attributeName="transform" type="rotate" 
+                           values="0;10;-10;0" dur="3s" repeatCount="indefinite"/>
+          <circle cx="0" cy="-30" r="35" fill="#FFA500" opacity="0.9"/>
+          <polygon points="-25,-55 -35,-75 -15,-65" fill="#FFA500"/>
+          <polygon points="25,-55 15,-65 35,-75" fill="#FFA500"/>
+          <circle cx="-12" cy="-35" r="3" fill="black"/>
+          <circle cx="12" cy="-35" r="3" fill="black"/>
+        </g>
+      </g>
+    
+    <text x="320" y="450" font-family="Arial, sans-serif" font-size="20" font-weight="bold"
+          fill="white" text-anchor="middle" filter="url(#glow)">
+      A cat playing piano in space
+      <animate attributeName="opacity" values="0.7;1;0.7" dur="2s" repeatCount="indefinite" />
+    </text>
+  </svg>
