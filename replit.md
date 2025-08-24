@@ -1,78 +1,78 @@
-# AI Animation Generator - Project Documentation
+# WordWave - Interactive Flashcard Learning Application
 
 ## Overview
-Professional animation generator application that creates high-quality animated visuals from text prompts using AI models via Replicate API. Features advanced Bayesian inference learning system with user feedback ratings and multiple video generation models.
 
-**Current Status:** Major upgrade complete with benchmark-leading models: Hailuo 2 (#2 globally), Wan 2.2 (VBench #1), and Google Veo 3 (state-of-the-art + audio generation) - all superior to OpenAI Sora quality.
-
-## Recent Changes (Latest First)
-
-### August 2025 - Superior Model Integration
-- ✅ **MAJOR UPGRADE**: Replaced ZeroScope V2 XL with benchmark-leading models
-- ✅ Integrated Hailuo 2 (MiniMax) - ranks #2 globally, outperforms Google Veo 3
-- ✅ Added Wan 2.2 (Alibaba) - VBench #1, first open-source MoE architecture 
-- ✅ Implemented Google Veo 3 Fast & Full - state-of-the-art with native audio generation
-- ✅ Model-specific parameter optimization for each platform's requirements
-- ✅ Comprehensive fallback system to ZeroScope V2 XL if newer models fail
-- ✅ Updated UI to accurately reflect the superior model capabilities
-- ✅ Cost-effective tier system: Wan 2.2 ($0.25), Hailuo 2 ($0.28), Veo 3 (~$3)
-
-### January 2025 - Previous Foundation Work
-- ✅ Enhanced ZeroScope V2 XL with optimized parameters for better quality
-- ✅ Improved prompt engineering for better movement realism and environmental consistency
-- ✅ Enhanced motion control parameters (motion bucket IDs, conditioning augmentation)
-- ✅ Implemented quality-based parameter adjustments for different resolution tiers
-- ✅ Added comprehensive error handling and fallback mechanisms
-- ✅ Refined guidance scale settings for more realistic content generation
-
-### Previous Work
-- ✅ Implemented comprehensive Bayesian learning system with user feedback ratings
-- ✅ Created detailed feedback interface with rating categories (object quality, movement realism, environment accuracy, lighting coherence)
-- ✅ Fixed animation quality degradation through safety overrides and parameter corrections
-- ✅ Resolved "wavy line artifacts" by optimizing video model parameters
-- ✅ Enhanced motion control and environmental consistency through advanced prompt engineering
-
-## Project Architecture
-
-### Video Generation Models (Superior AI Models)
-- **Basic:** ZeroScope V2 XL (1024x576, fallback only)
-- **Standard:** Wan 2.2 Ultra-Fast (1280x720, VBench #1, $0.25/video)
-- **High:** Hailuo 2 (1920x1080, superior physics, #2 globally, $0.28/video)
-- **Professional:** Google Veo 3 Fast (1920x1080, state-of-the-art + audio, ~$3/video)
-- **Ultra:** Google Veo 3 Full (1920x1080, premium quality + audio, ~$3/video)
-
-### Core Components
-- **Frontend:** React with TypeScript, Wouter routing, shadcn/ui components
-- **Backend:** Express.js with Replicate API integration
-- **Database:** PostgreSQL with Drizzle ORM
-- **AI Models:** Multiple video generation models via Replicate API
-- **Learning System:** Bayesian inference with Gaussian field-inspired quality control
-
-### Key Features
-- Advanced prompt engineering with physics-aware motion descriptors
-- Quality-based model selection with automatic fallback
-- Comprehensive feedback system for continuous improvement
-- Real-time progress tracking and error handling
-- Professional-grade animation quality controls
+WordWave is a modern educational web application designed to help students learn sight words through interactive flashcards. The application features multimedia content including GIFs, audio pronunciation, speech recognition, and AI-powered content generation. It supports role-based access for students, teachers, and administrators, with comprehensive progress tracking and classroom management capabilities.
 
 ## User Preferences
-- Prefers professional-artist quality animations with realistic motion
-- Values advanced AI capabilities and cutting-edge video generation models
-- Wants feedback-driven learning system that improves over time
-- Appreciates technical improvements in motion realism and environmental consistency
 
-## Technical Decisions
-- **Model Selection Strategy:** Benchmark-leading models with automatic fallback (Wan 2.2 → Hailuo 2 → Veo 3 → ZeroScope V2 XL)
-- **Model-Specific Parameters:** Customized input parameters for each model's API requirements
-- **Motion Control:** Enhanced physics simulation and realistic motion through superior model architectures
-- **Prompt Engineering:** Physics-aware descriptors optimized for each model's strengths
-- **Error Handling:** Comprehensive fallback system ensuring reliable video generation
-- **Cost Optimization:** Tiered pricing model from $0.25 (Wan 2.2) to $3 (Veo 3) based on quality needs
+Preferred communication style: Simple, everyday language.
 
-## Stack
-- **Languages:** TypeScript, JavaScript
-- **Frontend:** React, Vite, Tailwind CSS, shadcn/ui
-- **Backend:** Node.js, Express.js
-- **Database:** PostgreSQL with Drizzle ORM
-- **AI/ML:** Replicate API with multiple video generation models
-- **Deployment:** Replit with environment-based configuration
+## System Architecture
+
+### Frontend Architecture
+The client-side is built using React with TypeScript, leveraging Vite for development and build tooling. The UI framework is built on top of shadcn/ui components with Radix UI primitives, styled using Tailwind CSS with a custom design system featuring primary blue, secondary orange, and accent yellow colors. The application uses Wouter for client-side routing and TanStack Query for state management and API communication.
+
+Key architectural decisions:
+- **Component-based architecture**: Modular React components with clear separation of concerns
+- **TypeScript integration**: Full type safety across the frontend with shared schema validation
+- **Responsive design**: Mobile-first approach with bottom navigation for student interface
+- **Custom CSS animations**: Flashcard flip animations and audio wave visualizations
+
+### Backend Architecture
+The server is built on Express.js with TypeScript, implementing a RESTful API design. Authentication is handled using Passport.js with local strategy and express-session for session management. The application follows a layered architecture with separate modules for routes, authentication, storage, and AI integration.
+
+Key components:
+- **Route handlers**: RESTful endpoints for flashcards, progress tracking, user management, and AI features
+- **Authentication middleware**: Session-based authentication with role-based access control
+- **Storage abstraction**: Interface-based storage layer for database operations
+- **AI integration**: OpenAI GPT-4o integration for automated flashcard generation
+
+### Database Design
+The application uses PostgreSQL as the primary database with Drizzle ORM for type-safe database operations. The schema supports multi-tenancy through role-based access control and comprehensive progress tracking.
+
+Core entities:
+- **Users and Roles**: Three-tier role system (student, teacher, admin)
+- **Flashcard Sets and Cards**: Hierarchical content organization with multimedia support
+- **Progress Tracking**: Individual flashcard mastery and set completion tracking
+- **Activity Logging**: Comprehensive user activity monitoring
+- **Set Assignments**: Teacher-to-student content assignment system
+
+### Authentication and Authorization
+The system implements session-based authentication with role-based access control. Password security uses scrypt hashing with salt, and sessions are stored server-side with configurable expiration. Role-based routing ensures users only access appropriate interface sections.
+
+Security features:
+- **Password hashing**: Scrypt with random salt generation
+- **Session management**: Server-side session storage with PostgreSQL
+- **Role-based access**: Three-tier permission system
+- **CSRF protection**: Built into session configuration
+
+## External Dependencies
+
+### Database and Storage
+- **PostgreSQL**: Primary database via Neon serverless
+- **Drizzle ORM**: Type-safe database operations and migrations
+- **Express-session with connect-pg-simple**: Session storage in PostgreSQL
+
+### AI and Content Generation
+- **OpenAI GPT-4o**: Automated flashcard content generation including definitions, examples, and syllable breakdowns
+- **Web Speech API**: Browser-native speech recognition and text-to-speech functionality
+
+### UI and Styling
+- **shadcn/ui**: Pre-built component library built on Radix UI primitives
+- **Tailwind CSS**: Utility-first CSS framework with custom design tokens
+- **Radix UI**: Accessible component primitives for complex UI interactions
+- **Lucide React**: Icon library for consistent iconography
+
+### Development and Build Tools
+- **Vite**: Frontend build tooling with React plugin
+- **TypeScript**: Type safety across frontend and backend
+- **React Hook Form**: Form validation with Zod schema integration
+- **TanStack Query**: Server state management and caching
+
+### Authentication and Security
+- **Passport.js**: Authentication middleware with local strategy
+- **bcrypt/scrypt**: Password hashing for user security
+- **CORS**: Cross-origin resource sharing configuration
+
+The application is designed to scale horizontally with its modular architecture and can easily integrate additional AI providers or storage solutions through its abstraction layers.
